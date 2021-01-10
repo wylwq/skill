@@ -1,0 +1,36 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: skill-server
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/skill?characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      auto-commit: true
+      minimum-idle: 5
+      maximum-pool-size: 20
+      max-lifetime: 600000
+      connection-timeout: 15000
+      idle-timeout: 300000
+  output:
+    ansi: #设置支持颜色显示
+      enabled: always
+  redis:
+    database: 8
+    port: 6379
+    host: 127.0.0.1
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: id_worker
+      field-strategy: not_empty
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  configuration:
+    call-setters-on-nulls: true #开启map返回字段为空
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
